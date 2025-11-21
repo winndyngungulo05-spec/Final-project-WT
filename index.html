@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    
+</head>
+<body>
+   
+    <header>
+        <nav class="navbar section-content">
+            <a hrer="#" class="nav-logo">
+                <h2 class="logo-text">☕coffee</h2>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Testimonials</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Contact</a>
+                </li>
+                
+                
+                
+
+                
+
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero section-content">
+        <div class="hero-text">
+            <h1>Fresh Coffee in the Morning</h1>
+            <p>Enjoy the best coffee made with love and passion, just for you.</p>
+            <a href="#" id="orderBtn" class="hero-btn">Order Now</a>
+        </div>
+
+        <div class="hero-img">
+            <img src="o1.jpg" alt="Coffee Cup">
+        </div>
+    </section>
+
+ 
+    <section class="menu section-content">
+        <h2 class="section-title">Our Menu</h2>
+
+       <div class="menu-card">
+    <img src="e1.jpg" class="product-img" data-product="Espresso" data-price="2.50">
+    <h3>Espresso</h3>
+    <p>Strong and bold flavor.</p>
+</div>
+
+<div class="menu-card">
+    <img src="e3.jpg" class="product-img" data-product="Latte" data-price="3.00">
+    <h3>Latte</h3>
+    <p>Smooth and creamy blend.</p>
+</div>
+
+<div class="menu-card">
+    <img src="e2.jpg" class="product-img" data-product="Cappuccino" data-price="3.50">
+    <h3>Cappuccino</h3>
+    <p>Perfect foam and taste.</p>
+</div>
+
+        </div>
+    </section>
+
+    <section class="testimonials section-content">
+        <h2 class="section-title">What about clients</h2>
+
+        <div class="testimonials-list">
+            <div class="testimonial-card">
+                <p>“The best coffee in town!”</p>
+                <h4>- Winndy</h4>
+            </div>
+
+            <div class="testimonial-card">
+                <p>“Amazing aroma and taste. ”</p>
+                <h4>- Anna</h4>
+            </div>
+
+            <div class="testimonial-card">
+                <p>“ Perfect drinks.”</p>
+                <h4>- Paula</h4>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery section-content">
+        <h2 class="section-title">Gallery</h2>
+
+        <div class="gallery-images">
+            <img src="f7.jpg" alt="">
+            <img src="f9.jpg" alt="">
+            <img src="f3.jpg" alt="">
+            <img src="f4.jpg" alt="">
+        </div>
+    </section>
+
+   
+    <section class="contact section-content">
+        <h2 class="section-title">Contact Us</h2>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+   
+    <footer>
+        <p>© 2025 Coffee Shop | All rights reserved.</p>
+    </footer>
+
+
+    
+        <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    let cart = [];
+
+    const productImages = document.querySelectorAll('.menu-card .product-img');
+
+    productImages.forEach(img => {
+        img.addEventListener('click', function () {
+
+            const name = this.dataset.product;
+            const price = parseFloat(this.dataset.price);
+
+            const index = cart.findIndex(item => item.name === name);
+
+            if (index !== -1) {
+                cart.splice(index, 1);
+                this.style.border = "none";
+                this.style.boxShadow = "none";
+            } else {
+                cart.push({ name, price });
+                this.style.border = "3px solid brown";
+                this.style.boxShadow = "0 0 10px brown";
+            }
+
+            this.style.transform = "scale(1.15)";
+            this.style.transition = "0.2s";
+
+            setTimeout(() => {
+                this.style.transform = "scale(1)";
+            }, 200);
+        });
+    });
+
+    const orderBtn = document.getElementById("orderBtn");
+
+    orderBtn.addEventListener("click", function () {
+
+        if (cart.length === 0) {
+            alert("Please select at least one product!");
+            return;
+        }
+
+        let message = "You ordered:\n\n";
+        let total = 0;
+
+        cart.forEach(item => {
+            message += `${item.name} - $${item.price.toFixed(2)}\n`;
+            total += item.price;
+        });
+
+        message += `\nTotal: $${total.toFixed(2)} ☕`;
+
+        alert(message);
+    });
+
+});
+
+</script>
+
+</body>
+</html>
+
+    
